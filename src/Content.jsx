@@ -19,10 +19,12 @@ const Content = ()=>{
             <i className='fas fa-bars' onClick={handleShowMenu}></i>
                 <Routes>
                     <Route path="/user" element={<Users/>} replace/>
+                    <Route path="/user/add/" element={<AddUsers/>}>
+                        <Route path=":id"/>
+                    </Route>
                     <Route path="/post" element={<Posts/>} />
                     <Route path="/gallery" element={<Gallery/>} />
                     <Route path="/todo" element={<Todos/>} />
-                    <Route path="/user/add" element={<AddUsers/>}/>
                 </Routes>
         </div> 
     )
