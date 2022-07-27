@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 const Users = ()=>{
     return(
         <div classname="main-content">
@@ -8,9 +9,11 @@ const Users = ()=>{
                     <input className="search-user" type="text" placeholder="جستجو"></input>
                 </div>
                 <div className="add-btn">
+                    <Link to="/user/add">
                     <button>
-                        <i></i>
+                        <i className="fas fa-plus" style={{color:"blue"}} ></i>
                     </button>
+                    </Link>
                 </div>
             </div>
             <table className="users-table">
@@ -30,8 +33,8 @@ const Users = ()=>{
                         <td>KIAX</td>
                         <td>kia@gmail.com</td>
                         <td>
-                            <i></i>
-                            <i></i>
+                            <i className="fa fa-trash" style={{color:"red"}}></i>
+                            <i className="fa fa-pencil-square"></i>
                         </td>
                     </tr>
                 </tbody>

@@ -23,10 +23,12 @@ h4{
     z-index: 1000;
 }
 .container i {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     text-align: center;
     cursor: pointer;
+    font-size: 25px;
+    margin: 0 auto;
 }
 .main-content{
     display: flex;
@@ -49,13 +51,15 @@ h4{
     border: none;
 }
 .add-btn{
-    background-color: red;
     width: 35px;
     height: 35px;
     float: left;
     margin-left: 50px;
     border-radius: 2px;
     cursor: pointer;
+    border: none;
+    text-align: center;
+    outline: none;
 }
 .users-table{
     margin: 50px auto;
@@ -72,6 +76,15 @@ h4{
 .users-table tbody{
     height: 40px;
 }
+.users-table i {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 25px;
+    color: green;
+}
 tbody tr td{
     text-align: center;
 }
@@ -83,6 +96,7 @@ tbody tr td{
     height: 100vh;
     background-color: rgb(206, 201, 201);
     z-index: 999;
+    transition: all ease 0.5s;
 }
 .side-container ul{
     list-style: none;
@@ -100,8 +114,66 @@ tbody tr td{
     text-decoration: none;
     padding: 5px;
     transition: all ease 0.5s;
-    color: rgba(137, 43, 226, 0.815)
+    color: rgb(43, 101, 226)
 }
 .side-container a:hover{
     margin-right: 20px;
+    color: blueviolet;
+}
+.user-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-container form{
+    display: grid;
+    grid-template-areas: 'myarea';
+    margin-top: 100px;
+    background-color: rgba(173, 219, 247, 0.548);
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow:0px 5px 10px 0px rgba(128, 128, 128, 0.473);
+}
+.user-container form input{
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    outline-color: rgb(222, 253, 253);
+}
+.name input{
+    width: 400px;
+}
+.username input{
+    width: 400px;
+}
+.email input{
+    width: 400px;
+}
+.address{
+    display: grid;
+    grid-template-areas: 'myarea myarea';
+}
+.address input{
+    width: 188px;
+    justify-content: space-evenly;
+    text-align: start;
+    padding-right: 5px;
+}
+.button-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+}
+.button-container button{
+    margin-left: 10px;
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: snow;
+    text-align: center;
+    cursor: pointer;
+    line-height: 0;
+    padding-bottom: 3px;
 }

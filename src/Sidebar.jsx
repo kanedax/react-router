@@ -1,6 +1,7 @@
 import React from "react";
 import { mainContext } from "./context/maincontext";
 import { useContext } from "react";
+import {Link} from "react-router-dom"
 import './style.css';
 const Sidebar = ()=>{
     const{showMenu , setShowMenu}=useContext(mainContext);
@@ -11,16 +12,16 @@ const Sidebar = ()=>{
                     <img src=""></img>
                 </li>
                 <li>
-                    <a href="/">کاربران</a>
+                    <Link to="/user">کاربران</Link>
                 </li>
                 <li>
-                    <a href="/">پست ها</a>
+                    <Link to="/post">پست ها</Link>
                 </li>
                 <li>
-                    <a href="/">گالری</a>
+                    <Link to="/gallery">گالری</Link>
                 </li>
                 <li>
-                    <a href="/">کارها</a>
+                    <Link to="/todo">کارها</Link>
                 </li>
             </ul>
         </div>
