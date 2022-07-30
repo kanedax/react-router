@@ -185,3 +185,12 @@ tbody tr td{
     line-height: 0;
     padding-bottom: 3px;
 }
+.active-bar li {
+    background-color: azure;
+    color: rgba(0, 0, 0, 0.623);
+}
+.err{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 35vh;
+}

@@ -20,7 +20,7 @@ const Content = ()=>{
                 <Routes>
                     <Route path="/user" element={<Users/>} replace/>
                     <Route path="/user/add/" element={<AddUsers/>}>
-                        <Route path=":id"/>
+                        <Route path=":userId"/>
                     </Route>
                     <Route path="/post" element={<Posts/>} />
                     <Route path="/gallery" element={<Gallery/>} />

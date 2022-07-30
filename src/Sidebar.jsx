@@ -1,7 +1,7 @@
 import React from "react";
 import { mainContext } from "./context/maincontext";
 import { useContext } from "react";
-import {Link} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 import './style.css';
 const Sidebar = ()=>{
     const{showMenu , setShowMenu}=useContext(mainContext);
@@ -11,18 +11,26 @@ const Sidebar = ()=>{
                 <li>
                     <img src=""></img>
                 </li>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/user' >
                 <li>
-                    <Link to="/user">کاربران</Link>
+                    کاربران
                 </li>
+                </NavLink>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/post'>
                 <li>
-                    <Link to="/post">پست ها</Link>
+                    پست ها
                 </li>
+                </NavLink>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/gallery'>
                 <li>
-                    <Link to="/gallery">گالری</Link>
+                    گالری
                 </li>
+                </NavLink>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/todo'>
                 <li>
-                    <Link to="/todo">کارها</Link>
+                    کارها
                 </li>
+                </NavLink>
             </ul>
         </div>
     )

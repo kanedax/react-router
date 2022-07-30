@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddUsers = ()=>{
+
+    const{userId} = useParams()
+    const navigate = useNavigate()
     return(
         <div> 
-            <h4>افزودن کاربر</h4>
+            <h4>{userId ?'ویرایش کاربر': 'افزودن کاربر'}</h4>
             <div className="user-container">
                 <form>
                     <div className="name">
@@ -38,8 +42,11 @@ const AddUsers = ()=>{
                         </div>
                     </div>
                     <div className="button-container">
-                        <button type="button" style={{backgroundColor:'red'}}>بازگشت</button>
-                        <button type="submit" style={{backgroundColor:'green'}}>ذخیره</button>
+                        <button type="button" style={{backgroundColor:'red'}}
+                        onClick={()=>navigate(-1)}
+                        >بازگشت</button>
+                        <button type="submit" style={{backgroundColor:'green'}}>
+                        {userId ? 'ویرایش':'افزودن'}</button>
                     </div>
                 </form>
             </div>

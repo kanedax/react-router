@@ -1,6 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom'
+import swal from "sweetalert";
+import axios from "axios";
+import { useEffect } from "react";
 const Users = ()=>{
+
+    const [users , setUsers] = useState([])
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
+            setUsers(res.data);
+        }).catch(err=>{
+
+        })
+    }, []);
+
+    const handleDelete = (itemId)=>{
+        swal({
+            title: "حذف کاربر",
+            text:  `آیا از حذف رکورد ${itemId} اطمینان دارید ؟`,
+            icon: "warning",
+            buttons:true,
+            dangerMode:true,
+            buttons: ['انصراف','حذف']
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("رکورد با موفقیت حذف شد", {
+                icon: "success",
+                button : "خروج"
+              });
+            } else {
+              swal(".شما از حذف این رکورد منصرف شدید " , {
+                button : "خروج"
+              });
+            
+            }
+          });
+    } 
+
     return(
         <div classname="main-content">
             <h4>مدیریت کاربران</h4>
@@ -16,7 +53,8 @@ const Users = ()=>{
                     </Link>
                 </div>
             </div>
-            <table className="users-table">
+            {users.length ? (
+                <table className="users-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -27,18 +65,28 @@ const Users = ()=>{
                     </tr>
                 </thead>
                 <tbody>
+                    {users.map(u=>(
                     <tr>
-                        <td>1</td>
-                        <td>kia</td>
-                        <td>KIAX</td>
-                        <td>kia@gmail.com</td>
+                        <td>{u.id}</td>
+                        <td>{u.name}</td>
+                        <td>{u.username}</td>
+                        <td>{u.email}</td>
                         <td>
-                            <i className="fa fa-trash" style={{color:"red"}}></i>
-                            <i className="fa fa-pencil-square"></i>
+                            <i className="fa fa-trash" style={{color:"red"}} 
+                            onClick={()=>handleDelete(1)}></i>
+                            <Link to="/user/add/2">
+                                <i className="fa fa-pencil-square"></i>
+                            </Link>
                         </td>
                     </tr>
-                </tbody>
+                    ))}
+                </tbody> 
             </table>
+            ):(
+                <p className="err">
+                    لطفا کمی صبر کنید...
+                </p>
+            )}            
         </div>
     )
 }
