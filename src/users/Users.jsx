@@ -3,7 +3,25 @@ import {Link} from 'react-router-dom'
 import swal from "sweetalert";
 import axios from "axios";
 import { useEffect } from "react";
+
+
+// const test = (id)=>{
+//     return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+// }
+
+// const func = async (id)=>{
+//     await test (id).then(res=>{
+//         console.log(res.data)
+//     });
+//     console.log(id)
+// }
+
+// for ( const item of [1,2,3,4,5,6]){
+//     func(item);
+// }
+
 const Users = ()=>{
+
 
     const [users , setUsers] = useState([])
     useEffect(() => {
@@ -39,7 +57,7 @@ const Users = ()=>{
     } 
 
     return(
-        <div classname="main-content">
+        <div className="main-content">
             <h4>مدیریت کاربران</h4>
             <div className="head-content">
                 <div className="search-users">
@@ -55,33 +73,33 @@ const Users = ()=>{
             </div>
             {users.length ? (
                 <table className="users-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>نام</th>
-                        <th>نام کاربری</th>
-                        <th>ایمیل</th>
-                        <th>عملیات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(u=>(
-                    <tr>
-                        <td>{u.id}</td>
-                        <td>{u.name}</td>
-                        <td>{u.username}</td>
-                        <td>{u.email}</td>
-                        <td>
-                            <i className="fa fa-trash" style={{color:"red"}} 
-                            onClick={()=>handleDelete(1)}></i>
-                            <Link to="/user/add/2">
-                                <i className="fa fa-pencil-square"></i>
-                            </Link>
-                        </td>
-                    </tr>
-                    ))}
-                </tbody> 
-            </table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>نام</th>
+                                <th>نام کاربری</th>
+                                <th>ایمیل</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        {users.map(u=>(
+                            <tr key={u.id}>
+                                <td>{u.id}</td>
+                                <td>{u.name}</td>
+                                <td>{u.username}</td>
+                                <td>{u.email}</td>
+                                <td>
+                                    <i className="fa fa-trash" style={{color:"red"}} 
+                                    onClick={()=>handleDelete(1)}></i>
+                                    <Link to="/user/add/2">
+                                        <i className="fa fa-pencil-square"></i>
+                                    </Link>
+                                </td>
+                            </tr>
+                            ))}
+                    </tbody> 
+                </table>
             ):(
                 <p className="err">
                     لطفا کمی صبر کنید...
