@@ -43,10 +43,17 @@ const Users = ()=>{
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal("رکورد با موفقیت حذف شد", {
-                icon: "success",
-                button : "خروج"
-              });
+                axios.delete(`https://jsonplaceholder.typicode.com/users/${itemId}`).then(res=>{
+                    if(res.status === 200){
+                      const  newUsers = users.filter(u=>u.id != itemId);
+                      setUsers(newUsers);
+                      swal("رکورد با موفقیت حذف شد", {
+                        icon: "success",
+                        button : "خروج"
+                      });
+                    }
+                })
+              
             } else {
               swal(".شما از حذف این رکورد منصرف شدید " , {
                 button : "خروج"
@@ -90,11 +97,11 @@ const Users = ()=>{
                                 <td>{u.username}</td>
                                 <td>{u.email}</td>
                                 <td>
-                                    <i className="fa fa-trash" style={{color:"red"}} 
-                                    onClick={()=>handleDelete(1)}></i>
                                     <Link to="/user/add/2">
                                         <i className="fa fa-pencil-square"></i>
                                     </Link>
+                                    <i className="fa fa-trash" style={{color:"red"}} 
+                                    onClick={()=>handleDelete(u.id)}></i>
                                 </td>
                             </tr>
                             ))}
