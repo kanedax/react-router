@@ -11,22 +11,22 @@ const Sidebar = ()=>{
                 <li>
                     <img src=""></img>
                 </li>
-                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/user' >
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to="/user" >
                 <li>
                     کاربران
                 </li>
                 </NavLink>
-                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/post'>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to="/post">
                 <li>
                     پست ها
                 </li>
                 </NavLink>
-                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/gallery'>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to="/gallery">
                 <li>
                     گالری
                 </li>
                 </NavLink>
-                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to='/todo'>
+                <NavLink className={({isActive})=>{return isActive ? 'active-bar':'' }} to="/todo">
                 <li>
                     کارها
                 </li>

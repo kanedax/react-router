@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import Content from './Content';
 import { mainContext } from './context/maincontext';
 import Sidebar from './Sidebar';

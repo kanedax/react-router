@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import React, { useState  , useEffect} from "react";
+import {Link, useNavigate } from 'react-router-dom'
 import swal from "sweetalert";
 import axios from "axios";
-import { useEffect } from "react";
+
 
 
 // const test = (id)=>{
@@ -22,11 +22,13 @@ import { useEffect } from "react";
 
 const Users = ()=>{
 
-
+    const navigate = useNavigate();
     const [users , setUsers] = useState([])
+    const [mainUser , setMainUser] = useState();
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
             setUsers(res.data);
+            setMainUser(res.data);
         }).catch(err=>{
 
         })
@@ -45,7 +47,7 @@ const Users = ()=>{
             if (willDelete) {
                 axios.delete(`https://jsonplaceholder.typicode.com/users/${itemId}`).then(res=>{
                     if(res.status === 200){
-                      const  newUsers = users.filter(u=>u.id != itemId);
+                      const  newUsers = users.filter(u=>u.id !== itemId);
                       setUsers(newUsers);
                       swal("رکورد با موفقیت حذف شد", {
                         icon: "success",
@@ -63,12 +65,16 @@ const Users = ()=>{
           });
     } 
 
+    const handleSearchUser = (e)=>{
+        setUsers(mainUser.filter(u=>u.name.includes(e.target.value)))
+    }
+
     return(
         <div className="main-content">
             <h4>مدیریت کاربران</h4>
             <div className="head-content">
                 <div className="search-users">
-                    <input className="search-user" type="text" placeholder="جستجو"></input>
+                    <input className="search-user" type="text" placeholder="جستجو" onChange={handleSearchUser}></input>
                 </div>
                 <div className="add-btn">
                     <Link to="/user/add">
@@ -97,9 +103,7 @@ const Users = ()=>{
                                 <td>{u.username}</td>
                                 <td>{u.email}</td>
                                 <td>
-                                    <Link to="/user/add/2">
-                                        <i className="fa fa-pencil-square"></i>
-                                    </Link>
+                                    <i className="fa fa-pencil-square" onClick={()=>navigate(`/user/add/${u.id}`)}></i>
                                     <i className="fa fa-trash" style={{color:"red"}} 
                                     onClick={()=>handleDelete(u.id)}></i>
                                 </td>
