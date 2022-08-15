@@ -1,24 +1,9 @@
 import React, { useState  , useEffect} from "react";
 import {Link, useNavigate } from 'react-router-dom'
 import swal from "sweetalert";
-import axios from "axios";
+import { jpaxios } from "../services/jpaxios";
+import { handleSetNewUser } from "../services/functionservice";
 
-
-
-// const test = (id)=>{
-//     return axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
-// }
-
-// const func = async (id)=>{
-//     await test (id).then(res=>{
-//         console.log(res.data)
-//     });
-//     console.log(id)
-// }
-
-// for ( const item of [1,2,3,4,5,6]){
-//     func(item);
-// }
 
 const Users = ()=>{
 
@@ -26,12 +11,7 @@ const Users = ()=>{
     const [users , setUsers] = useState([])
     const [mainUser , setMainUser] = useState();
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users').then(res=>{
-            setUsers(res.data);
-            setMainUser(res.data);
-        }).catch(err=>{
-
-        })
+        handleSetNewUser(setUsers , setMainUser);
     }, []);
 
     const handleDelete = (itemId)=>{
@@ -45,7 +25,7 @@ const Users = ()=>{
           })
           .then((willDelete) => {
             if (willDelete) {
-                axios.delete(`https://jsonplaceholder.typicode.com/users/${itemId}`).then(res=>{
+                jpaxios.delete(`/users/${itemId}`).then(res=>{
                     if(res.status === 200){
                       const  newUsers = users.filter(u=>u.id !== itemId);
                       setUsers(newUsers);

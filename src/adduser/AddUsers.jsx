@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate, useParams } from "react-router-dom";
-import swal from "sweetalert";
-import axios from "axios";
+import { handleSetData, setUpdateUser, setUserService } from "../services/functionservice";
 
 
 const AddUsers = ()=>{
@@ -22,44 +21,15 @@ const AddUsers = ()=>{
     });
 
     useEffect(()=>{
-        axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`).then(res=>{
-            setDate({
-                name : res.data.name,
-                username : res.data.username,
-                email : res.data.email,
-                address : {
-                    street : res.data.address.street,
-                    city : res.data.address.city,
-                    suite : res.data.address.suite,
-                    zipcode : res.data.address.zipcode
-                }
-            })
-        })
+        handleSetData(userId , setDate);
     },[])
-
+    
     const handleAddUser = (e)=>{
         e.preventDefault();
         if(!userId){
-            axios.post('https://jsonplaceholder.typicode.com/users' , data).then(res=>{
-                if(res.status===201){
-                swal({
-                    icon: "success",
-                    text: "کاربر جدید با موفقیت ایجاد گردید",
-                    button : "متوجه شدم"
-                  });
-                }
-        })
+            setUserService(data);
         }else{
-            axios.put(`https://jsonplaceholder.typicode.com/users/${userId}` , data).then(res=>{
-                console.log(res);
-                if(res.status===200){
-                    swal({
-                        icon: "success",
-                        text: "کاربر با موفقیت ویرایش گردید",
-                        button : "متوجه شدم"
-                      });
-                    }
-            })
+            setUpdateUser(data , userId);
         }
     }
 
