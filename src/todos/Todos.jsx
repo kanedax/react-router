@@ -1,11 +1,12 @@
 import React from "react";
-const Todos = ()=>{
+import higherOrder from "./higherOrder";
+const Todos = (props)=>{
     return(
         <div>
-            <h4>مدیریت کارها</h4>
+            <h4> {props.text} </h4>
         </div>
     )
 }
-export default Todos;
+export default higherOrder(Todos);
 
 
