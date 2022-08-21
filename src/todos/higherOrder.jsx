@@ -4,7 +4,7 @@ import React from "react";
 const higherOrder = MainHigher =>{
     const newHigher = ()=>{
         return(
-            <MainHigher text="todoworks"></MainHigher>
+            <MainHigher text="مدیریت کارها"></MainHigher>
         )
     }
     return newHigher;
