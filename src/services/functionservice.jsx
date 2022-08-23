@@ -43,3 +43,33 @@ export const handleSetNewUser = async (setUsers , setMainUser)=>{
         setUsers(res.data);
         setMainUser(res.data);
 }
+export const GetPost = async (postId , setPost)=>{
+    const res = await jpaxios.get(`/posts/${postId}`)
+    setPost({
+        id : res.data.id,
+        title : res.data.title,
+        body : res.data.body
+    })
+}
+
+export const setPostService = async (post)=>{
+    const res = await jpaxios.post('/posts' , post)
+        if(res){
+        swal({
+            icon: "success",
+            text: "پست جدید با موفقیت ایجاد گردید",
+            button : "متوجه شدم"
+          });
+        }
+}
+export const setUpdatePost = async ( post, postId)=>{
+    const res = await jpaxios.put(`/posts/${postId}` , post)
+        if(res){
+            swal({
+                icon: "success",
+                text: "پست با موفقیت ویرایش گردید",
+                button : "متوجه شدم"
+              });
+            }
+}
+

@@ -24,7 +24,7 @@ const Content = ()=>{
                         <Route path=":userId"/>
                     </Route>
                     <Route path="/post" element={<Posts/>} ></Route>
-                    <Route path="/post/add" element={<AddPosts/>} >
+                    <Route path="/post/add" exact element={<AddPosts/>} >
                         <Route path=":postId"/>
                     </Route>
                     <Route path="/gallery" element={<Gallery/>} ></Route>

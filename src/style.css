@@ -21,6 +21,7 @@ h4{
     height: 100vh;
     background-color: rgb(230, 235, 235);
     z-index: 1000;
+    overflow: auto;
 }
 .container i {
     width: 25px;
@@ -80,6 +81,11 @@ h4{
 .users-table thead{
     height: 40px;
     border-top: 1px solid rgb(150, 149, 149);
+}
+
+.users-table td {
+    width: 1vw;
+    overflow: hidden;
 }
 .users-table tbody{
     height: 40px;
@@ -197,4 +203,65 @@ tbody tr td{
     font-size: 30px;
     text-align: center;
     margin-top: 35vh;
+}
+.post-container{
+    background-color: rgba(173, 219, 247, 0.548);
+    box-shadow:0px 5px 10px 0px rgba(128, 128, 128, 0.473);
+    border-radius: 5px;
+    width: 50vw;
+    height: 40vh;
+    margin-top: 10vh;
+    padding-right: 10px;
+}
+.title-container{
+    margin-top: 20px;
+}
+.text-container{
+    margin-top: 20px;
+}
+.form-control{
+    float: left;
+    position: relative;
+    left: 20px;
+    bottom: -55px;
+}
+.post-title2{
+    outline-color: rgb(222, 253, 253);
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+    height: 50px;
+    margin-top: 20px;
+    overflow: scroll;
+
+}
+.post-text2{
+    outline-color: rgb(222, 253, 253);
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+    height: 80px;
+    margin-top: 20px;
+}
+.form-control button{
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: snow;
+    text-align: center;
+    cursor: pointer;
+    line-height: 0;
+    margin-left: 20px;
+}
+#post-submit{
+    background-color: green;
+}
+#post-return{
+    background-color: red;
+}
+.post-maincontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

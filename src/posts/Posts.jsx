@@ -1,21 +1,50 @@
 import React from "react";
 import { useEffect , useState , useNavigate } from "react";
 import { Link } from "react-router-dom";
-import { handleGetPost } from "../services/getservices";
+import swal from "sweetalert";
+import { handleGetPost } from "../services/getservices"
+import { jpaxios } from "../services/jpaxios";
 
 const Posts = ()=>{
-
+    
     const [post , setPost] = useState([]);
-    const handleDelete = ()=>{}
-    const handleSearchPost = ()=>{}
+    const[mainPost , setMainPost] = useState();
+    useEffect(()=>{
+        getPost(setPost , setMainPost);
+    },[])
+    const handleDelete = (postId)=>{
+        swal({
+            title: "حذف پست",
+            text:  `آیا از حذف رکورد ${postId} اطمینان دارید ؟`,
+            icon: "warning",
+            buttons:true,
+            dangerMode:true,
+            buttons: ['انصراف','حذف']
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                jpaxios.delete(`/posts/${postId}`).then(res=>{
+                    if(res.status === 200){
+                      const  newposts = post.filter(u=>u.id !== postId);
+                      setPost(newposts);
+                      swal("رکورد با موفقیت حذف شد", {
+                        icon: "success",
+                        button : "خروج"
+                      });
+                    }
+                })
+              
+            } 
+          });
+    }
+    const handleSearchPost = (e)=>{
+        setPost(mainPost.filter(u=>u.body.includes(e.target.value)))
+    }
     const getPost = async ()=>{
         const res = await handleGetPost();
         setPost(res.data);
+        setMainPost(res.data);
     }
-    useEffect(()=>{
-        getPost();
-    },[])
-
 
     return(
         <div>
@@ -46,11 +75,13 @@ const Posts = ()=>{
                     <tbody>
                         {post.map(u=>(
                             <tr key={u.id}>
-                                <td>{u.name}</td>
+                                <td>{u.id}</td>
                                 <td>{u.title}</td>
                                 <td>{u.body}</td>
                                 <td>
-                                    <i className="fa fa-pencil-square" ></i>
+                                    <Link to={`/post/add/${u.id}`}>
+                                    <i className="fa fa-pencil-square"  ></i>
+                                    </Link>
                                     <i className="fa fa-trash" style={{color:"red"}} 
                                     onClick={()=>handleDelete(u.id)}></i>
                                 </td>
