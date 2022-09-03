@@ -211,35 +211,38 @@ tbody tr td{
     width: 50vw;
     height: 40vh;
     margin-top: 10vh;
-    padding-right: 10px;
-}
-.title-container{
-    margin-top: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 .text-container{
     margin-top: 20px;
 }
 .form-control{
-    float: left;
     position: relative;
-    left: 20px;
-    bottom: -55px;
+    right: 5px;
+
+    bottom: -20px;
 }
 .post-title2{
     outline-color: rgb(222, 253, 253);
     border: none;
     border-radius: 5px;
-    width: 70%;
+    width: 95%;
     height: 50px;
     margin-top: 20px;
     overflow: scroll;
+    direction: ltr;
+    padding-left: 5px;
 
 }
 .post-text2{
     outline-color: rgb(222, 253, 253);
     border: none;
     border-radius: 5px;
-    width: 70%;
+    width: 95%;
     height: 80px;
     margin-top: 20px;
 }
@@ -264,4 +267,9 @@ tbody tr td{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+textarea{
+    resize: none;
+    direction: ltr;
+    padding-left: 5px;
 }

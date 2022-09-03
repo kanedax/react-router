@@ -1,4 +1,5 @@
 import swal from "sweetalert";
+import { handleGetComment } from "./getservices";
 import { jpaxios } from "./jpaxios";
 
 export const setUserService = async (data)=>{
@@ -71,5 +72,9 @@ export const setUpdatePost = async ( post, postId)=>{
                 button : "متوجه شدم"
               });
             }
+}
+
+export const getComment = async (comment)=>{
+    const res = await handleGetComment(comment)
 }
 

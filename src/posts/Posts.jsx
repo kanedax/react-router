@@ -84,6 +84,7 @@ const Posts = ()=>{
                                     </Link>
                                     <i className="fa fa-trash" style={{color:"red"}} 
                                     onClick={()=>handleDelete(u.id)}></i>
+                                    <i className="fa fa-file" style={{color : "blue"}}></i>
                                 </td>
                             </tr>
                             ))}

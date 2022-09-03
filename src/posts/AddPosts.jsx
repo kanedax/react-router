@@ -41,9 +41,9 @@ const AddPosts = ()=>{
                     <div className="text-container">
                         <label className="post-text">متن:</label>
                         <br/>
-                        <input className="post-text2" type="text" value={post.body} 
+                        <textarea rows={3} cols={30} className="post-text2" type="text" value={post.body} 
                             onChange={(e)=>setPost({...post , body:e.target.value})}
-                        ></input>
+                        ></textarea >
                     </div>
                     <div className="form-control">
                         <button type="button" id="post-return" onClick={()=>navigate(-1)}>بازگشت</button>
