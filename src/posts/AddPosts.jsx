@@ -9,6 +9,7 @@ const AddPosts = ()=>{
     const{postId}=useParams();
     const navigate = useNavigate();
     const[post , setPost]= useState({
+        userId : "",
         id : "",
         title : "",
         body : "",

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect , useState , useNavigate } from "react";
+import { useEffect , useState  } from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { handleGetPost } from "../services/getservices"
@@ -8,10 +8,8 @@ import { jpaxios } from "../services/jpaxios";
 const Posts = ()=>{
     
     const [post , setPost] = useState([]);
-    const[mainPost , setMainPost] = useState();
-    useEffect(()=>{
-        getPost(setPost , setMainPost);
-    },[])
+    const [uId , setUid] = useState("");
+    const[mainPost , setMainPost] = useState({});
     const handleDelete = (postId)=>{
         swal({
             title: "حذف پست",
@@ -37,14 +35,22 @@ const Posts = ()=>{
             } 
           });
     }
-    const handleSearchPost = (e)=>{
-        setPost(mainPost.filter(u=>u.body.includes(e.target.value)))
+    const handleSearchPost = ()=>{
+       if(uId > 0)
+        setPost(mainPost.filter(p=>p.userId == uId))
+        else setPost(mainPost)
     }
     const getPost = async ()=>{
         const res = await handleGetPost();
         setPost(res.data);
         setMainPost(res.data);
     }
+    useEffect(()=>{
+        getPost(setPost , setMainPost);
+    },[])
+    useEffect(()=>{
+        handleSearchPost()
+    },[uId])
 
     return(
         <div>
@@ -52,7 +58,7 @@ const Posts = ()=>{
             <h4>مدیریت پستها</h4>
             <div className="head-content">
                 <div className="search-users">
-                    <input className="search-user" type="text" placeholder="جستجو" onChange={handleSearchPost}></input>
+                    <input className="search-user" type="number" placeholder=" جستجو با آی دی" value={uId} onChange={(e)=>setUid(e.target.value)}></input>
                 </div>
                 <div className="add-btn">
                     <Link to="/post/add">
@@ -67,6 +73,7 @@ const Posts = ()=>{
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>آی دی</th>
                                 <th>عنوان</th>
                                 <th>متن </th>
                                 <th>عملیات</th>
@@ -76,6 +83,7 @@ const Posts = ()=>{
                         {post.map(u=>(
                             <tr key={u.id}>
                                 <td>{u.id}</td>
+                                <td style={{cursor : "pointer" , color : "blue"}} onClick={()=>setUid(u.userId)}>{u.userId}</td>
                                 <td>{u.title}</td>
                                 <td>{u.body}</td>
                                 <td>
