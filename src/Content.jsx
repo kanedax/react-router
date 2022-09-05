@@ -5,6 +5,7 @@ import Todos from './todos/Todos';
 import Users from './users/Users';
 import AddUsers from './adduser/AddUsers';
 import AddPosts from "./posts/AddPosts";
+import Addposts2 from "./posts/AddPosts 2";
 import {mainContext} from './context/maincontext'
 import './style.css';
 import { Routes ,Route } from "react-router-dom";
@@ -24,7 +25,7 @@ const Content = ()=>{
                         <Route path=":userId"/>
                     </Route>
                     <Route path="/post" element={<Posts/>} ></Route>
-                    <Route path="/post/add" exact element={<AddPosts/>} >
+                    <Route path="/post/add" exact element={<Addposts2/>} >
                         <Route path=":postId"/>
                     </Route>
                     <Route path="/gallery" element={<Gallery/>} ></Route>

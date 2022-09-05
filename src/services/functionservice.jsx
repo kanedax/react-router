@@ -44,9 +44,9 @@ export const handleSetNewUser = async (setUsers , setMainUser)=>{
         setUsers(res.data);
         setMainUser(res.data);
 }
-export const GetPost = async (postId , setPost)=>{
+export const GetPost = async (postId , setInputValues)=>{
     const res = await jpaxios.get(`/posts/${postId}`)
-    setPost({
+    setInputValues({
         id : res.data.id,
         title : res.data.title,
         body : res.data.body
